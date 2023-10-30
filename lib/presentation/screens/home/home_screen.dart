@@ -18,7 +18,7 @@ class HomeScreenState extends State<HomeScreen> {
         context: context,
         initialDate: _todayDate,
         firstDate: _birthDate,
-        lastDate: _todayDate
+        lastDate: DateTime(2101)
     );
     if (picked != null && picked != _todayDate) {
       setState(() {

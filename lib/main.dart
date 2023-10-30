@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           titleFontSize: 30,
           subtitleFontSize: 20,
           paragraphFontSize: 15,
-          bodyFontSize: 40
+          bodyFontSize: 30
       ).theme(),
       home: const HomeScreen()
     );

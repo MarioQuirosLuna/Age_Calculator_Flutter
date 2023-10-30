@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Exact_Age.dart';
-import 'Next_Birthday.dart';
-import 'Summary_Column.dart';
+import 'exact_Age.dart';
+import 'next_Birthday.dart';
+import 'summary_Column.dart';
 
 class InformationBox extends StatelessWidget {
   final DateTime todayDate;

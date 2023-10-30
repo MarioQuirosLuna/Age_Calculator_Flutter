@@ -11,37 +11,43 @@ const List<Color> _colorThemes = [
   Colors.cyan,
 ];
 
-class AppTheme{
+class ThemeProvider extends ChangeNotifier {
+  int _selectedColor = 0;
+  final double _titleFontSize = 30;
+  final double _subtitleFontSize = 20;
+  final double _paragraphFontSize = 15;
+  final double _bodyFontSize = 30;
+  bool _isDarkMode = true;
 
-  final int selectedColor;
-  final double titleFontSize;
-  final double subtitleFontSize;
-  final double paragraphFontSize;
-  final double bodyFontSize;
+  int get selectedColor => _selectedColor;
+  double get titleFontSize => _titleFontSize;
+  double get subtitleFontSize => _subtitleFontSize;
+  double get paragraphFontSize => _paragraphFontSize;
+  double get bodyFontSize => _bodyFontSize;
+  bool get isDarkMode => _isDarkMode;
+  List<Color> get colorThemes => _colorThemes;
 
-  AppTheme({
-    this.selectedColor = 0,
-    this.titleFontSize = 30,
-    this.subtitleFontSize = 20,
-    this.paragraphFontSize = 15,
-    this.bodyFontSize = 40,
-  }): assert(selectedColor >= 0 && selectedColor < _colorThemes.length, 'Invalid color index, must be between 0 and ${_colorThemes.length - 1}');
-
-  ThemeData theme(){
+  ThemeData getTheme(){
     final themeColor = _colorThemes[selectedColor];
 
     return ThemeData(
       useMaterial3: true,
-      colorSchemeSeed: _colorThemes[selectedColor],
-      brightness: Brightness.dark,
+      colorSchemeSeed: themeColor,
+      brightness: _isDarkMode ? Brightness.dark : Brightness.light,
       textTheme: TextTheme(
-        titleLarge: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold),
-        titleMedium: TextStyle(fontSize: subtitleFontSize, fontWeight: FontWeight.bold),
-        titleSmall: TextStyle(fontSize: paragraphFontSize),
-        labelLarge: TextStyle(fontSize: bodyFontSize, fontWeight: FontWeight.bold, color: themeColor),
-        labelMedium: TextStyle(fontSize: subtitleFontSize, fontWeight: FontWeight.bold, color: themeColor),
-        labelSmall: TextStyle(fontSize: paragraphFontSize, color: themeColor),
+        titleLarge: TextStyle(fontSize: _titleFontSize, fontWeight: FontWeight.bold),
+        titleMedium: TextStyle(fontSize: _subtitleFontSize, fontWeight: FontWeight.bold),
+        titleSmall: TextStyle(fontSize: _paragraphFontSize),
+        labelLarge: TextStyle(fontSize: _bodyFontSize, fontWeight: FontWeight.bold, color: themeColor),
+        labelMedium: TextStyle(fontSize: _subtitleFontSize, fontWeight: FontWeight.bold, color: themeColor),
+        labelSmall: TextStyle(fontSize: _paragraphFontSize, color: themeColor),
       ),//Apply dark theme
     );
+  }
+
+  void updateTheme(int colorIndex, bool isDarkMode){
+    _selectedColor = colorIndex;
+    _isDarkMode = isDarkMode;
+    notifyListeners();
   }
 }

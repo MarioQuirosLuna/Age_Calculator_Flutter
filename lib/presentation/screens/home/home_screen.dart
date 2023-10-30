@@ -1,6 +1,7 @@
+import 'package:age_calculator/presentation/screens/home/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:age_calculator/presentation/widgets/home/InformationBox/Information_Box.dart';
-import 'package:age_calculator/presentation/widgets/home/Date_Picker.dart';
+import 'package:age_calculator/presentation/widgets/home/InformationBox/information_Box.dart';
+import 'package:age_calculator/presentation/widgets/home/date_Picker.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,6 +49,16 @@ class HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text('Age Calculator'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SettingsScreen())
+                );
+              },
+            )],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

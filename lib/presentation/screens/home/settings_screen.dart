@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../config/theme/app_theme.dart';
 import '../../widgets/settings/dark_mode_selector.dart';
 import '../../widgets/settings/theme_color_selector.dart';
 
-class SettingsScreen extends StatefulWidget {
+
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
-  SettingsScreenState createState() => SettingsScreenState();
-}
-
-class SettingsScreenState extends State<SettingsScreen> {
-
-  @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    bool isDarkMode = themeProvider.isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
